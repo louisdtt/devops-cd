@@ -121,11 +121,15 @@ jobs:
       - checkout
       - run:
           name: Heroku Deploy
-          command: echo todo && false
+          command: git push https://heroku:f11ddde7-1bdf-4e9d-b8ad-da4e0ff59c25@git.heroku.com/morning-island-14161.git HEAD:master
       - run:
           name: Smoke Test
-          command: echo todo && false
-
+          command: |
+            if [[ "$HTTPCODE" -ne 200 ]]; then
+              echo "heroku app not responding, failing deploy" \
+              exit 1 \
+              HTTPCODE=`curl -s -o /dev/null -w "%{http_code}" https://morning-island-14161.herokuapp.com/`
+    
 workflows:
   version: 2
   build-test-and-lint:
