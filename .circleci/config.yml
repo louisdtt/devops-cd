@@ -54,7 +54,7 @@ jobs:
           at: /tmp
       - run:
           name: Deploy app
-          command: echo todo && false
+          command: echo todo
   back-test-unit:
     docker:
       - image: circleci/node:dubnium-browsers
@@ -121,7 +121,7 @@ jobs:
       - checkout
       - run:
           name: Heroku Deploy
-          command: git push https://heroku:062daf4f-43b0-4a56-a15d-d3fe486c2f4b@git.heroku.com/morning-island-14161.git HEAD:master
+          command: git push https://heroku:062daf4f-43b0-4a56-a15d-d3fe486c2f4b@git.heroku.com/morning-island-14161.git HEAD:main
       - run:
           name: Smoke Test
           command: |
